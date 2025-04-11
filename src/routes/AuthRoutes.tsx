@@ -5,7 +5,7 @@ import {AuthLayout} from "../components/authLayout"
 
 
 
-export function AppRoutes() {
+export function AuthRoutes() {
 
     return (
         <Routes>

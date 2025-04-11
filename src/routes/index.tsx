@@ -1,13 +1,13 @@
 import { BrowserRouter } from "react-router";
-import { AppRoutes } from "./AuthRoutes";
+import { AuthRoutes } from "./AuthRoutes";
 
 
-// Autenticação
+
 
 export function Routes() {
     return (
         <BrowserRouter>
-        <AppRoutes/>
+        <AuthRoutes/>
         </BrowserRouter>
     )
 }
