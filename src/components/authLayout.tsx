@@ -5,6 +5,8 @@ import LogoSvg from "../assets/logo.svg"
 
 
 
+
+
 export function AuthLayout() {
     return (
         <div className="w-screen h-screen bg-gray-400 flex flex-col justify-center items-center
