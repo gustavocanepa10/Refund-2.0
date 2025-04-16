@@ -1,5 +1,5 @@
 
-import { Input } from "./input";
+
 
 
 type Props = React.ComponentProps<"select"> & {
@@ -15,7 +15,7 @@ type Props = React.ComponentProps<"select"> & {
               className="w-lg h-12 rounded-lg border border-gray-300 px-4 text-sm text-gray-100 bg-transparent outline-none focus:border-2"
               {...rest}
             >
-              <option value="" disabled hidden>
+              <option value="">
                 Selecione
               </option>
               <option value="food">Alimentação</option>
@@ -26,7 +26,7 @@ type Props = React.ComponentProps<"select"> & {
             </select>
           </div>
     
-          <Input legend="Valor" type="number" placeholder="0,00" />
+          
         </div>
       );
   }
