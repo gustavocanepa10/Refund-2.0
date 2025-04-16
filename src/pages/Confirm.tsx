@@ -19,7 +19,7 @@ export function Confirm() {
                 </h1>
         
                 <img 
-                    className="w-50 h-50" 
+                    className="w-28 h-28" 
                     src={confirm} 
                     alt="Ícone de confirmação" 
                 />
