@@ -12,7 +12,7 @@ export function Upload({filename = null, ...rest} : Props) {
             Comprovante
         </legend>
 
-        <div className="flex items-center h-12 w-full rounded-lg border border-gray-300 text-sm text-gray-100 bg-transparent outline-none  ">
+        <div className="flex items-center h-12 w-full rounded-lg border  border-gray-300 text-sm text-gray-100 bg-transparent outline-none  ">
             <input className="hidden" type="file" id="upload" {...rest}/>
 
             <span className="text-xs text-gray-100 flex-1 pl-4">{filename ?? "Selecione o arquivo"}</span>

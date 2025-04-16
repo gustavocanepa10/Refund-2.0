@@ -3,13 +3,33 @@ import { Input } from "../components/input";
 import { Select } from "../components/Select";
 import { Upload } from "../components/Upload";
 import { Button } from "../components/Button";
+import { useNavigate } from "react-router";
+
+type FormData = {
+    solicitationName : string,
+    Category : string,
+    value : number,
+    file : string
+
+}
+
 
 
 export function Refund() {
-    const { control, handleSubmit } = useForm()
+  const navigate = useNavigate()
+    
+    const { control, handleSubmit } = useForm<FormData>()
 
   function onSubmit(data: any) {
     console.log("Foi", data);
+    navigate('/confirm', {state : {fromSubmit: true}})
+    
+    
+    
+
+    
+    
+
   }
 
   return (
@@ -28,7 +48,7 @@ export function Refund() {
         control={control}
         name="solicitationName"
         render={({ field }) => (
-          <Input {...field} legend="Nome da Solicitação" />
+          <Input {...field} legend="Nome da Solicitação" required />
         )}
       />
 
@@ -36,14 +56,25 @@ export function Refund() {
         <Controller
           control={control}
           name="Category"
-          render={({ field }) => <Select legend="Categoria" {...field} />}
+          render={({ field }) => <Select required legend="Categoria" {...field} />}
         />
+
+        <Controller control={control} name="value" render={({field}) => (
+             <Input legend="Valor" required {...field}/>
+
+        )}/>
        
-        <Input legend="Valor" required />
+       
       </div>
 
 
-      <Upload filename="Nome do arquivo.pdf" />
+      <Controller control={control} name="file" render={({field}) => (
+        <Upload required filename="Nome do arquivo.pdf" {...field} />
+
+      )}  />
+
+
+      
 
 
 

@@ -3,6 +3,7 @@ import {Routes, Route} from "react-router"
 import {Refund} from "../pages/Refund"
 import { NotFound } from "../pages/NotFound"
 import { AppLayout } from "../components/AppLayout"
+import { Confirm } from "../pages/Confirm"
 
 
 export function EmployeeRoutes() {
@@ -11,6 +12,7 @@ export function EmployeeRoutes() {
         <Route path="/" element = {<AppLayout/>}>
 
         <Route path="/" element= {<Refund/>}  />
+        <Route path="/confirm" element =  {<Confirm/>}  />
 
         </Route>
        
