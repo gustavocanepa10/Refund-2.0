@@ -2,7 +2,7 @@ import {Routes, Route} from "react-router"
 
 import  {AppLayout} from "../components/AppLayout"
 import { NotFound } from "../pages/NotFound"
-import { List } from "../pages/List"
+import { Dashboard } from "../pages/Dashboard"
 
 
 export function AdminRoutes() {
@@ -10,7 +10,7 @@ export function AdminRoutes() {
     <Routes>
         <Route path="/" element = {<AppLayout/>}>
 
-        <Route path="/" element= {<List/>}  />
+        <Route path="/" element= {<Dashboard/>}  />
        
 
         </Route>
