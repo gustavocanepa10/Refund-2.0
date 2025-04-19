@@ -4,6 +4,7 @@ import { RefundItem } from "../components/RefundItem";
 import { useState } from "react";
 import { Button } from "../components/Button";
 import { formatCurrency } from "../utils/formatCurrency";
+import { Pagination } from "../components/Pagination";
 
 
 
@@ -12,6 +13,8 @@ import { formatCurrency } from "../utils/formatCurrency";
 
 export function Dashboard() {
     const [name, setName] = useState("")
+    const [page,setPage] = useState(1)
+    const [totalOfPage, setTotalofPage] = useState(10)
 
     const Refund_Example = {
         id : "123",
@@ -23,14 +26,23 @@ export function Dashboard() {
     function fetchFounds(e: React.FormEvent) {
         e.preventDefault()
         console.log(name);
-        
-
-        
-   
-
-
-
     }
+
+    function handlePagination(action : "next" | "previous" ) {
+        setPage((prevPage) => {
+            if (action === "next" && prevPage < totalOfPage) {
+                return prevPage + 1
+            }
+
+            if (action === "previous" && prevPage > 1) {
+                return prevPage - 1
+            
+            }
+
+            return prevPage
+        })
+    }
+
     return (
         <div className="bg-gray-500 items-center md:min-w-[768px] p-10 rounded-xl justify-between">
             <h1 className="font-semibold text-gray-100 font-sans text-xl flex-1">Solicitações</h1>
@@ -53,10 +65,16 @@ export function Dashboard() {
             <div className="p-6 flex flex-col flex-1 mt-6 gap-4 max-h-[342px] overflow-y-scroll">
 
             <RefundItem data={Refund_Example}/>
+
+
+
+           
             
 
 
             </div>
+
+            <Pagination  onNext={() => handlePagination("next")} onPrevious={() => handlePagination("previous")} current = {page} total = {totalOfPage} />
 
            
            
