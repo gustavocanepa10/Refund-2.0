@@ -16,7 +16,7 @@ type Props = React.ComponentProps <"a"> & {
 
 
 export function RefundItem({data, ...rest} : Props) {
-    return <a  className="flex justify-between"{...rest}>
+    return <a  className="flex justify-between" {...rest}>
 
         
 

@@ -3,7 +3,9 @@ import { Input } from "../components/input";
 import { Select } from "../components/Select";
 import { Upload } from "../components/Upload";
 import { Button } from "../components/Button";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
+
+
 
 type FormData = {
     solicitationName : string,
@@ -16,13 +18,29 @@ type FormData = {
 
 
 export function Refund() {
+
   const navigate = useNavigate()
+  const params = useParams<{id: string}>()
+ 
+  
     
     const { control, handleSubmit } = useForm<FormData>()
 
+    
+
   function onSubmit(data: any) {
+
+    if (params.id) {
+      return navigate(-1)
+    }
+
+
     console.log("Foi", data);
-    navigate('/confirm', {state : {fromSubmit: true}})
+
+
+
+    navigate("/confirmar", {state: {fromsubmit: true}})
+    
     
     
     
@@ -31,6 +49,9 @@ export function Refund() {
     
 
   }
+
+
+  
 
 
   
@@ -49,6 +70,7 @@ export function Refund() {
       </header>
       <Controller
         control={control}
+        disabled = {!!params.id}
         name="solicitationName"
         render={({ field }) => (
           <Input {...field} legend="Nome da Solicitação" required />
@@ -57,13 +79,14 @@ export function Refund() {
 
       <div className="flex gap-4">
         <Controller
+        disabled = {!!params.id}
           control={control}
           name="Category"
           render={({ field }) => <Select required legend="Categoria" {...field} />}
         />
 
         <Controller control={control} name="value" render={({field}) => (
-             <Input legend="Valor" required {...field}/>
+             <Input legend="Valor" required {...field} disabled = {!!params.id}/>
 
         )}/>
        
@@ -72,7 +95,7 @@ export function Refund() {
 
 
       <Controller control={control} name="file" render={({field}) => (
-        <Upload required filename="Nome do arquivo.pdf" {...field} />
+        <Upload disabled = {!!params.id} required filename="Nome do arquivo.pdf" {...field} />
 
       )}  />
 
@@ -83,7 +106,7 @@ export function Refund() {
 
       
 
-      <Button type="submit">Enviar</Button>
+      <Button type="submit">{ params.id ?  "Voltar" : "Enviar"}</Button>
     </form>
   );
 }
