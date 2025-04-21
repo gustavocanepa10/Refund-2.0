@@ -4,6 +4,7 @@ import { Select } from "../components/Select";
 import { Upload } from "../components/Upload";
 import { Button } from "../components/Button";
 import { useNavigate, useParams } from "react-router";
+import FileSVG from "../assets/file.svg"
 
 
 
@@ -94,11 +95,26 @@ export function Refund() {
       </div>
 
 
+
+      {params.id ? (
+        <a href="https://x.com/home" target="_blank" className="text-sm text-green-100 font-semibold
+        flex items-center justify-center gap-2 my-6 hover:opacity-70">
+          <img src= {FileSVG} alt="Icone do arquivo" />
+      Abrir comprovante
+      </a>
+      
+    
+    ) : (
       <Controller control={control} name="file" render={({field}) => (
-        <Upload disabled = {!!params.id} required filename="Nome do arquivo.pdf" {...field} />
+        <Upload  required filename="Nome do arquivo.pdf" {...field} />
 
       )}  />
 
+
+    )}
+
+
+      
 
       
 
