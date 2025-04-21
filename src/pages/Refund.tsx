@@ -1,10 +1,11 @@
-import { Controller, useForm } from "react-hook-form";
+
 import { Input } from "../components/input";
 import { Select } from "../components/Select";
 import { Upload } from "../components/Upload";
 import { Button } from "../components/Button";
 import { useNavigate, useParams } from "react-router";
 import FileSVG from "../assets/file.svg"
+import { useState } from "react";
 
 
 
@@ -22,21 +23,35 @@ export function Refund() {
 
   const navigate = useNavigate()
   const params = useParams<{id: string}>()
+
+
+  const [name, setrefundName] = useState("")
+
+  const [category, setCategory] = useState("")
+
+  const [value, setValue] = useState("")
+
+  const [fileName, setfileName] = useState<File | null >(null)
+
+
+
+
  
   
     
-    const { control, handleSubmit } = useForm<FormData>()
+    
 
     
 
-  function onSubmit(data: any) {
+  function onSubmit(e: React.FormEvent) {
+    e.preventDefault()
 
     if (params.id) {
       return navigate(-1)
     }
 
 
-    console.log("Foi", data);
+    console.log("Foi", name, category, value, fileName );
 
 
 
@@ -61,7 +76,7 @@ export function Refund() {
     <form
       className="w-full flex flex-col rounded-xl bg-gray-500 p-10 gap-6
             lg:min-w-[512px]"
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={onSubmit}
     >
       <header className="flex flex-col text-gray-100 gap-4">
         <h1 className="font-bold text-2xl">Solicitação de reembolso</h1>
@@ -69,27 +84,14 @@ export function Refund() {
           Dados da despesa para solicitar reembolso.
         </p>
       </header>
-      <Controller
-        control={control}
-        disabled = {!!params.id}
-        name="solicitationName"
-        render={({ field }) => (
-          <Input {...field} legend="Nome da Solicitação" required />
-        )}
-      />
+      <Input legend="Nome da solicitação" value={name} onChange={(e) => setrefundName(e.target.value)}/>
 
       <div className="flex gap-4">
-        <Controller
-        disabled = {!!params.id}
-          control={control}
-          name="Category"
-          render={({ field }) => <Select required legend="Categoria" {...field} />}
-        />
+        <Select legend="Categoria" value={category} onChange={(e) => setCategory(e.target.value)}/>
 
-        <Controller control={control} name="value" render={({field}) => (
-             <Input legend="Valor" required {...field} disabled = {!!params.id}/>
-
-        )}/>
+        <Input className="w-full h-12 rounded-lg border   
+                 border-gray-300 px-4 text-sm text-gray-100 bg-transparent outline-none focus:2 focus:border-green-100 placeholder-gray-300
+                 appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-inner-spin-button]:m-0" type="number" placeholder="0,00" legend="Valor" value={value} onChange={(e) => setValue(e.target.value)}/>
        
        
       </div>
@@ -105,13 +107,13 @@ export function Refund() {
       
     
     ) : (
-      <Controller control={control} name="file" render={({field}) => (
-        <Upload  required filename="Nome do arquivo.pdf" {...field} />
+      
+        <Upload onChange={(e) => e.target.files && setfileName(e.target.files[0])}  required filename="Nome do arquivo.pdf" />
 
-      )}  />
+      )}  
 
 
-    )}
+   
 
 
       

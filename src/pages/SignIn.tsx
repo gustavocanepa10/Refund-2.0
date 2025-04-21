@@ -1,63 +1,49 @@
 import { Input } from "../components/input";
 import { Button } from "../components/Button";
-import { Controller, useForm } from "react-hook-form";
+
+import { useState } from "react";
 import { useNavigate } from "react-router";
 
 export function SignIn() {
   const navigate = useNavigate();
-  const { control, handleSubmit } = useForm({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
 
-  function onSubmit(data: any) {
-    console.log(data);
+
+  const [name, setName] = useState("")
+
+  const [email, setEmail] = useState("")
+  
+
+  function onSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    
   }
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit= {onSubmit}
       className="w-full flex flex-col gap-4"
     >
-      <Controller
-        control={control}
-        name="email"
-        render={({ field }) => (
-          <Input
-            required
-            legend="E-mail"
-            type="email"
-            placeholder="Seu @email.com"
-            {...field}
-          />
-        )}
-      />
 
-      <Controller
-        control={control}
-        name="password"
-        render={({ field }) => (
-          <Input
-            required
-            legend="Senha"
-            type="password"
-            placeholder="123456"
-            {...field}
-          />
-        )}
-      />
+<Input legend="Nome" value={name} onChange={(e) => setName(e.target.value)}  />
 
-      <Button onClick={onSubmit}> Entrar </Button>
 
-      <Button
-        onClick={() => navigate("/SignUp")}
-        type="button"
-        className="w-full h-12 rounded-md font-sans text-gray-100 font-semibold cursor-pointer "
-      >
-        Criar conta
-      </Button>
+
+
+<Input legend="email" value={email} onChange={(e) => setEmail(e.target.value)}  />
+
+
+
+<Button onSubmit={onSubmit}>
+  Entrar
+</Button>
+
+
+<button onClick={() => navigate('/SignUp')} className="cursor-pointer font-semibold mt-3">
+  Criar conta
+</button>
+
+     
+        
     </form>
   );
 }
