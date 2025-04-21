@@ -40,7 +40,7 @@ export function Refund() {
 
 
 
-    navigate("/confirmar", {state: {fromsubmit: true}})
+    navigate("confirm", {state: {fromsubmit: true}})
     
     
     

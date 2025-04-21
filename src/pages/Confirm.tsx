@@ -7,7 +7,7 @@ export function Confirm() {
     const location = useLocation()
     const navigate = useNavigate()
 
-    if (!location.state?.fromSubmit) {
+    if (!location.state?.fromsubmit) {
 
         return <Navigate to={"/"}/>
 

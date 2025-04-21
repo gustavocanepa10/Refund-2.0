@@ -5,16 +5,45 @@ import { AdminRoutes } from "./AdminRoutes";
 import { Loading } from "../components/Loading";
 
 
-const isLoading = true
+const isLoading = false
+
+const session = {
+    user: {
+        role : "Admin"
+    }
+}
 
 export function Routes() {
+
+    function Route() {
+        
+
+        switch (session.user.role) {
+            case "Admin":
+
+            return <AdminRoutes/>
+
+            case "employee":
+                
+            return <EmployeeRoutes/>
+            
+            
+            default:
+                return <AuthRoutes/>
+        }
+    }
+
+
+    
+
+
 
     if (isLoading) {
         return <Loading/>
     }
     return (
         <BrowserRouter>
-        <AuthRoutes/>
+        <Route/>
         </BrowserRouter>
     )
 }

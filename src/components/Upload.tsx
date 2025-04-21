@@ -18,7 +18,7 @@ export function Upload({filename = null, ...rest} : Props) {
             <span className="text-xs text-gray-100 flex-1 pl-4">{filename ?? "Selecione o arquivo"}</span>
 
             <label htmlFor="upload">
-                <img className="bg-green-100 h-12 w-12 rounded-lg p-2 cursor-pointer" src = {UploadSvg} alt="Upload" />
+                <img className="bg-green-100 h-12 p-2.5 w-12 rounded-lg  cursor-pointer" src = {UploadSvg} alt="Upload" />
                 </label>
 
             
